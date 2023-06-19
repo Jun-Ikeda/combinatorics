@@ -5,7 +5,7 @@
 
 typedef struct set set_t;
 
-set_t *set_init(size_t initial_size, free_func_t freer, print_func_t printer, compare_func_t comparer);
+set_t *set_init(size_t initial_size, free_func_t freer, print_func_t printer, stringify_func_t stringifier, compare_func_t comparer);
 
 void set_free(set_t *set);
 
@@ -34,5 +34,7 @@ void *set_max(set_t *set);
 void *set_min(set_t *set);
 
 set_t *set_copy(set_t *set);
+
+char *set_to_string(set_t *set);
 
 #endif // #ifndef __SET_H__

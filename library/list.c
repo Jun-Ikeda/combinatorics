@@ -1,6 +1,9 @@
 #include <assert.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../include/list.h"
+
+const size_t MAX_ELEMENT_SIZE = 10;
 
 typedef struct list {
     void **elements;
@@ -8,10 +11,11 @@ typedef struct list {
     size_t capacity;
     free_func_t freer;
     print_func_t printer;
+    stringify_func_t stringifier;
     compare_func_t comparer;
 } list_t;
 
-list_t *list_init(size_t initial_size, free_func_t freer, print_func_t printer, compare_func_t comparer) {
+list_t *list_init(size_t initial_size, free_func_t freer, print_func_t printer, stringify_func_t stringifier, compare_func_t comparer) {
   assert(initial_size > 0);
   list_t *list = malloc(sizeof(list_t));
   assert(list != NULL);
@@ -21,6 +25,7 @@ list_t *list_init(size_t initial_size, free_func_t freer, print_func_t printer, 
   assert(list->elements != NULL);
   list->freer = freer;
   list->printer = printer;
+  list->stringifier = stringifier;
   list->comparer = comparer;
   return list;
 }
@@ -127,9 +132,24 @@ void list_insert(list_t *list, void *element, size_t index) {
 }
 
 list_t *list_copy(list_t *list) {
-  list_t *copy = list_init(list->capacity, list->freer, list->printer, list->comparer);
+  list_t *copy = list_init(list->capacity, list->freer, list->printer, list->stringifier, list->comparer);
   for (size_t i = 0; i < list->size; i++) {
     list_add(copy, list->elements[i]);
   }
   return copy;
+}
+
+char *list_to_string(list_t *list) {
+  char *string = malloc(sizeof(char) * (list_size(list) * (2 + MAX_ELEMENT_SIZE) + 1));
+  assert(string != NULL);
+  // sprintf(string, "{ ");
+  for (size_t i = 0; i < list->size; i++) {
+    char *element_string = list->stringifier(list->elements[i]);
+    strcat(string, element_string);
+    if (i < list->size - 1) {
+      strcat(string, ",");
+    }
+  }
+  // strcat(string, " }");
+  return string;
 }

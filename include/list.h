@@ -10,9 +10,11 @@ typedef void (*free_func_t)(void *);
 
 typedef void (*print_func_t)(void *);
 
+typedef char* (*stringify_func_t)(void *);
+
 typedef int (*compare_func_t)(void *, void *);
 
-list_t *list_init(size_t initial_size, free_func_t freer, print_func_t printer, compare_func_t comparer);
+list_t *list_init(size_t initial_size, free_func_t freer, print_func_t printer, stringify_func_t stringifier, compare_func_t comparer);
 
 void list_free(list_t *list);
 
@@ -39,5 +41,7 @@ int list_compare(list_t *list1, list_t *list2);
 void list_insert(list_t *list, void *element, size_t index);
 
 list_t *list_copy(list_t *list);
+
+char *list_to_string(list_t *list);
 
 #endif // #ifndef __LIST_H__

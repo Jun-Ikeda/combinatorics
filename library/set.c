@@ -7,10 +7,10 @@ typedef struct set {
   list_t *list;
 } set_t;
 
-set_t *set_init(size_t initial_size, free_func_t freer, print_func_t printer, compare_func_t comparer) {
+set_t *set_init(size_t initial_size, free_func_t freer, print_func_t printer, stringify_func_t stringifier, compare_func_t comparer) {
     set_t *set = malloc(sizeof(set_t));
     assert(set != NULL);
-    set->list = list_init(initial_size, freer, printer, comparer);
+    set->list = list_init(initial_size, freer, printer, stringifier, comparer);
     return set;
 }
 
@@ -119,4 +119,8 @@ set_t *set_copy(set_t *set) {
     assert(copy != NULL);
     copy->list = list_copy(set->list);
     return copy;
+}
+
+char *set_to_string(set_t *set) {
+    return list_to_string(set->list);
 }
