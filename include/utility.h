@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+// double rand_double();
+
 /** 
  * Prints a character
  * 

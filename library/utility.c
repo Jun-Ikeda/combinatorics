@@ -1,5 +1,10 @@
 #include <string.h>
+#include <stdlib.h>
 #include "../include/utility.h"
+
+// double random_double() {
+//     return (double)rand() / RAND_MAX;
+// }
 
 void print_char(void *c) {
     printf("%c", *(char *)c);
