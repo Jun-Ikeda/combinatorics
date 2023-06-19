@@ -7,10 +7,10 @@ typedef struct set {
   list_t *list;
 } set_t;
 
-set_t *set_init(size_t initial_size, free_func_t freer, print_func_t printer, compare_func_t comparer) {
+set_t *set_init(size_t initial_size, free_func_t freer, stringify_func_t stringifyer, compare_func_t comparer) {
     set_t *set = malloc(sizeof(set_t));
     assert(set != NULL);
-    set->list = list_init(initial_size, freer, printer, comparer);
+    set->list = list_init(initial_size, freer, stringifyer, comparer);
     return set;
 }
 
@@ -69,8 +69,8 @@ void set_clear(set_t *set) {
     list_clear(set->list);
 }
 
-void set_print(set_t *set) {
-    list_print(set->list);
+char *set_stringify(set_t *set) {
+    return list_stringify(set->list);
 }
 
 int set_index_of(set_t *set, void *element) {

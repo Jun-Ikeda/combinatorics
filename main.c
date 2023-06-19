@@ -15,11 +15,11 @@ list_t *all_convex_sets(int n_max, set_t *numbers, list_t *memos) {
     if (list_size(memos) >= n_max) {
         return list_get(memos, n_max - 1);
     }
-    list_t *sets = list_init(2, free, (print_func_t)set_print, (compare_func_t)set_compare);
+    list_t *sets = list_init(2, free, (stringify_func_t)set_stringify, (compare_func_t)set_compare);
     if (n_max == 1) {
-        set_t *empty = set_init(1, NULL, print_int, compare_int);
+        set_t *empty = set_init(1, NULL, stringify_int, compare_int);
         list_add(sets, empty);
-        set_t *one = set_init(1, NULL, print_int, compare_int);
+        set_t *one = set_init(1, NULL, stringify_int, compare_int);
         set_add(one, set_get(numbers, 1));
         list_add(sets, one);
     } else {
@@ -40,27 +40,20 @@ list_t *all_convex_sets(int n_max, set_t *numbers, list_t *memos) {
 }
 
 int main(const int argc, const char* argv[]) {
-    FILE *fp = fopen("output.csv", "w");
-    int n_max = 75;
-    list_t *memos = list_init(n_max, free, (print_func_t) list_print, (compare_func_t) list_compare);
-    set_t *numbers = set_init(n_max + 1, free, print_int, compare_int);
+    // FILE *fp = fopen("output.csv", "w");
+    int n_max = 6;
+    list_t *memos = list_init(n_max, free, (stringify_func_t) list_stringify, (compare_func_t) list_compare);
+    set_t *numbers = set_init(n_max + 1, free, stringify_int, compare_int);
     for (size_t i = 0; i < n_max + 1; i++) {
         set_add_int(numbers, i);
     }
     list_t *convex_sets = all_convex_sets(n_max, numbers, memos);
     printf("sets size: %d\n", list_size(convex_sets));
-    fprintf(fp, "n,convex sets\n");
-    fclose(fp);
+    printf("sets: %s\n", list_stringify(convex_sets));
+    // fprintf(fp, "n,convex sets\n");
+    // fclose(fp);
 
     list_free(convex_sets);
     set_free(numbers);
     return 0;
 }
-
-// int main(const int argc, const char* argv[]) {
-//     FILE *fp = fopen("output.csv", "w");
-//     fprintf(fp, "n,convex sets\n");
-//     fclose(fp);
-
-//     return 0;
-// }

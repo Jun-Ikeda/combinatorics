@@ -4,74 +4,74 @@
 #include <stdio.h>
 
 /** 
- * Prints a character
+ * stringifys a character
  * 
- * @param c Character to print
+ * @param c Character to stringify
  */
-void print_char(void *c);
+char *stringify_char(void *c);
 
 /** 
- * Prints a string
+ * stringifys a string
  * 
- * @param s String to print
+ * @param s String to stringify
  */
-void print_string(void *s);
+char *stringify_string(void *s);
 
 /** 
- * Prints an integer
+ * stringifys an integer
  * 
- * @param i Integer to print
+ * @param i Integer to stringify
  */
-void print_int(void *i);
+char *stringify_int(void *i);
 
 /** 
- * Prints a float
+ * stringifys a float
  * 
- * @param f Float to print
+ * @param f Float to stringify
  */
-void print_float(void *f);
+char *stringify_float(void *f);
 
 /** 
- * Prints a double
+ * stringifys a double
  * 
- * @param d Double to print
+ * @param d Double to stringify
  */
-void print_double(void *d);
+char *stringify_double(void *d);
 
 /** 
- * Prints a long
+ * stringifys a long
  * 
- * @param l Long to print
+ * @param l Long to stringify
  */
-void print_long(void *l);
+char *stringify_long(void *l);
 
 /** 
- * Prints a long long
+ * stringifys a long long
  * 
- * @param ll Long long to print
+ * @param ll Long long to stringify
  */
-void print_long_long(void *ll);
+char *stringify_long_long(void *ll);
 
 /** 
- * Prints a long double
+ * stringifys a long double
  * 
- * @param ld Long double to print
+ * @param ld Long double to stringify
  */
-void print_long_double(void *ld);
+char *stringify_long_double(void *ld);
 
 /** 
- * Prints a pointer
+ * stringifys a pointer
  * 
- * @param p Pointer to print
+ * @param p Pointer to stringify
  */
-void print_pointer(void *p);
+char *stringify_pointer(void *p);
 
 /** 
- * Prints a boolean
+ * stringifys a boolean
  * 
- * @param b Boolean to print
+ * @param b Boolean to stringify
  */
-void print_bool(void *b);
+char *stringify_bool(void *b);
 
 /** 
  * Compares two characters and returns 

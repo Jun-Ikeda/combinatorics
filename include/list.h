@@ -8,11 +8,11 @@ typedef struct list list_t;
 
 typedef void (*free_func_t)(void *);
 
-typedef void (*print_func_t)(void *);
+typedef char *(*stringify_func_t)(void *);
 
 typedef int (*compare_func_t)(void *, void *);
 
-list_t *list_init(size_t initial_size, free_func_t freer, print_func_t printer, compare_func_t comparer);
+list_t *list_init(size_t initial_size, free_func_t freer, stringify_func_t stringifyer, compare_func_t comparer);
 
 void list_free(list_t *list);
 
@@ -26,7 +26,7 @@ void *list_remove(list_t *list, size_t index);
 
 void list_clear(list_t *list);
 
-void list_print(list_t *list);
+char *list_stringify(list_t *list);
 
 int list_index_of(list_t *list, void *element);
 

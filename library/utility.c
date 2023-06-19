@@ -1,44 +1,54 @@
 #include <string.h>
 #include "../include/utility.h"
 
-void print_char(void *c) {
-    printf("%c", *(char *)c);
+char *strinfigy_char(void *c) {
+    // strinfigyf("%c", *(char *)c);
+    return (char *)c;
 }
 
-void print_string(void *s) {
-    printf("%s", (char *)s);
+char *strinfigy_string(void *s) {
+    // strinfigyf("%s", (char *)s);
+    return (char *)s;
 }
 
-void print_int(void *i) {
-    printf("%d", *(int *)i);
+char *strinfigy_int(void *i) {
+    // strinfigyf("%d", *(int *)i);
+    return (char *)i;
 }
 
-void print_float(void *f) {
-    printf("%f", *(float *)f);
+char *strinfigy_float(void *f) {
+    // strinfigyf("%f", *(float *)f);
+    return (char *)f;
 }
 
-void print_double(void *d) {
-    printf("%lf", *(double *)d);
+char *strinfigy_double(void *d) {
+    // strinfigyf("%lf", *(double *)d);
+    return (char *)d;
 }
 
-void print_long(void *l) {
-    printf("%ld", *(long *)l);
+char *strinfigy_long(void *l) {
+    // strinfigyf("%ld", *(long *)l);
+    return (char *)l;
 }
 
-void print_long_long(void *ll) {
-    printf("%lld", *(long long *)ll);
+char *strinfigy_long_long(void *ll) {
+    // strinfigyf("%lld", *(long long *)ll);
+    return (char *)ll;
 }
 
-void print_long_double(void *ld) {
-    printf("%Lf", *(long double *)ld);
+char *strinfigy_long_double(void *ld) {
+    // strinfigyf("%Lf", *(long double *)ld);
+    return (char *)ld;
 }
 
-void print_pointer(void *p) {
-    printf("%p", *(void **)p);
+char *strinfigy_pointer(void *p) {
+    // strinfigyf("%p", *(void **)p);
+    return (char *)p;
 }
 
-void print_bool(void *b) {
-    printf("%s", *(int *)b ? "true" : "false");
+char *strinfigy_bool(void *b) {
+    // strinfigyf("%s", *(int *)b ? "true" : "false");
+    return *(int *)b ? "true" : "false";
 }
 
 int compare_char(void *c1, void *c2) {

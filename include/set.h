@@ -5,7 +5,7 @@
 
 typedef struct set set_t;
 
-set_t *set_init(size_t initial_size, free_func_t freer, print_func_t printer, compare_func_t comparer);
+set_t *set_init(size_t initial_size, free_func_t freer, stringify_func_t stringifyer, compare_func_t comparer);
 
 void set_free(set_t *set);
 
@@ -19,7 +19,7 @@ void *set_remove(set_t *set, size_t index);
 
 void set_clear(set_t *set);
 
-void set_print(set_t *set);
+char *set_stringify(set_t *set);
 
 int set_index_of(set_t *set, void *element);
 
